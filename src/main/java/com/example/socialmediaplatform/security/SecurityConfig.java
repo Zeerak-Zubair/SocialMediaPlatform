@@ -42,6 +42,12 @@ public class SecurityConfig {
                     //permit everyone to register
                     authorize.requestMatchers(HttpMethod.POST, "/users/register").permitAll();
 
+//                    //permit access to all for swagger ui
+                    authorize.requestMatchers(HttpMethod.GET,"/api-docs").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET,"/swagger-ui/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET,"/api-docs/swagger-config").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET,"/favicon.ico").permitAll();
+
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
