@@ -6,6 +6,7 @@ import com.example.socialmediaplatform.model.User;
 import com.example.socialmediaplatform.repository.FollowRepository;
 import com.example.socialmediaplatform.repository.UserRepository;
 import com.example.socialmediaplatform.security.JwtTokenProvider;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,6 +72,7 @@ public class UserService {
     }
 
     // 3. Get All Users
+    @Transactional
     public List<UserResponseDTO> getAllUsers() {
         log.info("UserService - getAllUsers()");
         return userRepository.findAll().stream().map(User::toResponse).toList();
@@ -128,6 +130,7 @@ public class UserService {
     }
 
     //8. Get Followers
+    @Transactional
     public List<FollowerResponseDTO> getFollowers(Long id){
 
         User foundUser = userRepository.findById(id)
