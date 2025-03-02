@@ -1,0 +1,52 @@
+### Creating a Post
+POST http://localhost:8080/posts
+Content-Type: application/json
+Authorization: Bearer <your-jwt-token>
+
+{
+  "content": "This is the content of my first post."
+}
+
+### Get a Specific Post By Id
+GET http://localhost:8080/posts/1
+Authorization: Bearer <your-jwt-token>
+
+### Get all Posts
+GET http://localhost:8080/posts
+Authorization: Bearer <your-jwt-token>
+
+### Update a Post
+PUT http://localhost:8080/posts/1
+Content-Type: application/json
+Authorization: Bearer <your-jwt-token>
+
+{
+  "content": "Updated content for the post."
+}
+
+### Add Comment to a Post
+POST http://localhost:8080/posts/1/comments
+Content-Type: application/json
+Authorization: Bearer <your-jwt-token>
+
+{
+  "content": "Nice post!"
+}
+
+
+### Like a Post
+POST localhost:8080/posts/1/like
+Authorization: Bearer <your-jwt-token>
+
+### Delete a Posts
+DELETE http://localhost:8080/posts/2
+Authorization: Bearer <your-jwt-token>
+
+### Get All Posts
+GET http://localhost:8080/posts/user/1
+Authorization: Bearer <your-jwt-token>
+
+### Search All Posts
+POST http://localhost:8080/posts/search?keyword=post&page=0&size=10
+Authorization: Bearer <your-jwt-token>
+

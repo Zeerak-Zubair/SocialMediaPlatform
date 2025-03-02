@@ -1,0 +1,58 @@
+### Create a new user
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+  "username": "Zayyan",
+  "email": "zayyan@gmail.com",
+  "password": "Zayyan"
+}
+
+### Log in
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "Zeerak",
+  "password": "Zeerak"
+}
+
+### Get all users
+GET http://localhost:8080/users
+Authorization: Bearer <your-jwt-token>
+
+### Get a specific user
+GET http://localhost:8080/users/2
+Authorization: Bearer <your-jwt-token>
+
+### Updating a User
+PUT http://localhost:8080/users/{id}
+Content-Type: application/json
+Authorization: Bearer <your-jwt-token>
+
+{
+  "username": "NewUsername",
+  "email": "newemail@example.com",
+  "password": "NewPassword"
+}
+
+### Deleting a User
+DELETE http://localhost:8080/users/2
+Authorization: Bearer <your-jwt-token>
+
+### Searching a User
+POST http://localhost:8080/users/search?keyword=Z
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJaZWVyYWsiLCJpYXQiOjE3NDA5MjQzNDcsImV4cCI6MTc0MDkyNTM0N30.aMkIuAnHHTWcbSX8-eolmCEXWNX5FWvU4lLweAT-Wd5E-oDIoMsr49ZtL3amiLDg
+
+### Follow a User
+POST http://localhost:8080/users/2/follow
+Authorization: Bearer <your-jwt-token>
+
+### Retrieve a user's followers
+GET http://localhost:8080/users/3/followers
+Authorization: Bearer <your-jwt-token>
+
+### Retrieve users followed by a user
+GET http://localhost:8080/1/following
+Authorization: Bearer <your-jwt-token>
+
