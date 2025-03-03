@@ -145,7 +145,7 @@ public class UserService {
         User foundUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return foundUser.getFollowers().stream().map(Follow::FollowingToResponse).toList();
+        return foundUser.getFollowing().stream().map(Follow::FollowingToResponse).toList();
 
     }
 
