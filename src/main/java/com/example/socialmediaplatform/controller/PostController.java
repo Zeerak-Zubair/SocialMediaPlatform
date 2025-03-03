@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -117,13 +118,13 @@ public class PostController {
         log.info("PostController - search()");
         try {
             List<Post> posts;
-            Pageable paging = PageRequest.of(page, size);
+            Pageable paging = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "content"));
 
             Page<Post> pagePosts;
             if (keyword == null)
                 pagePosts = postService.findAll(paging);
             else
-                pagePosts = postService.findByContentContaining(keyword, paging);
+                pagePosts = postService.search(keyword, paging);
 
             posts = pagePosts.getContent();
 

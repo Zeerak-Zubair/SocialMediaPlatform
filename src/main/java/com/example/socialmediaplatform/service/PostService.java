@@ -8,6 +8,7 @@ import com.example.socialmediaplatform.repository.CommentRepository;
 import com.example.socialmediaplatform.repository.LikeRepository;
 import com.example.socialmediaplatform.repository.PostRepository;
 import com.example.socialmediaplatform.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -38,6 +39,7 @@ public class PostService {
 
         // Get the authenticated user
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info("Current Username: {}",currentUsername);
         User authenticatedUser = userRepository.findByUsernameOrEmail(currentUsername, currentUsername)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -50,6 +52,7 @@ public class PostService {
     }
 
     // 2. Get Post by ID
+    @Transactional
     public PostResponseDTO getPostById(Long postId) {
         log.info("PostService - getPostById()");
         Post post = postRepository.findById(postId)
@@ -57,7 +60,7 @@ public class PostService {
         return post.toResponse();
     }
 
-    // 3. Get All Posts (Paginated)
+    @Transactional
     public List<PostResponseDTO> getAllPosts() {
         log.info("PostService - getAllPosts()");
         return postRepository.findAll().stream()
@@ -73,6 +76,7 @@ public class PostService {
     }
 
     // 4. Update Post
+    @Transactional
     public PostResponseDTO updatePost(Long postId, PostRequestDTO requestDTO) {
         log.info("PostService - updatePost()");
 
@@ -112,8 +116,13 @@ public class PostService {
     }
 
     // 6. Get Posts by User ID
+    @Transactional
     public List<PostResponseDTO> getPostsByUserId(Long userId) {
         log.info("PostService - getPostsByUserId()");
+
+        userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         List<Post> posts = postRepository.findByUserId(userId);
         return posts.stream()
                 .map(Post::toResponse)
@@ -121,11 +130,9 @@ public class PostService {
     }
 
     // 6. Search
-    public Page<PostResponseDTO> search(String keyword, int page, int size){
+    public Page<Post> search(String keyword, Pageable pageable){
         log.info("PostService - search()");
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "content"));
-        Page<Post> foundPosts =  postRepository.findByContentContaining(keyword, pageable);
-        return foundPosts.map(Post::toResponse);
+        return postRepository.findByContentContaining(keyword, pageable);
     }
 
     //7. Add a Comment To a POst

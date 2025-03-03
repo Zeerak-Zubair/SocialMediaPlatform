@@ -43,6 +43,7 @@ public class Post {
 
     public PostResponseDTO toResponse(){
         return new PostResponseDTO(
+                this.id,
                 this.content,
                 this.timestamp,
                 (comments == null || comments.isEmpty()) ? null : comments.stream().map(Comment::toResponse).toList(),

@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class PostResponseDTO {
+    private Long id;
     private String content;
     private LocalDateTime createdAt;
     private List<CommentResponseDTO> comments;
