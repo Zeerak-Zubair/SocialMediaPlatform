@@ -47,7 +47,8 @@ public class Post {
                 this.content,
                 this.timestamp,
                 (comments == null || comments.isEmpty()) ? null : comments.stream().map(Comment::toResponse).toList(),
-                (likes == null || likes.isEmpty()) ? 0 : likes.size()
+                (likes == null || likes.isEmpty()) ? 0 : likes.size(),
+                this.user.getUsername()
         );
     }
 

@@ -67,12 +67,12 @@ public class PostService {
                 .map(Post::toResponse).toList();
     }
 
-    public Page<Post> findAll(Pageable pageable){
-        return postRepository.findAll(pageable);
+    public Page<PostResponseDTO> findAll(Pageable pageable){
+        return postRepository.findAll(pageable).map(Post::toResponse);
     }
 
-    public Page<Post> findByContentContaining(String keyword, Pageable paging){
-        return postRepository.findByContentContaining(keyword,paging);
+    public Page<PostResponseDTO> findByContentContaining(String keyword, Pageable paging){
+        return postRepository.findByContentContaining(keyword,paging).map(Post::toResponse);
     }
 
     // 4. Update Post
@@ -130,9 +130,9 @@ public class PostService {
     }
 
     // 6. Search
-    public Page<Post> search(String keyword, Pageable pageable){
+    public Page<PostResponseDTO> search(String keyword, Pageable pageable){
         log.info("PostService - search()");
-        return postRepository.findByContentContaining(keyword, pageable);
+        return postRepository.findByContentContaining(keyword, pageable).map(Post::toResponse);
     }
 
     //7. Add a Comment To a POst

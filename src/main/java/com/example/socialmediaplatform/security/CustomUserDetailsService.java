@@ -5,6 +5,7 @@ import com.example.socialmediaplatform.model.User;
 import com.example.socialmediaplatform.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
+    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -28,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not exists by Username or Email"));
-        log.info("Found user: {}",user);
+        //log.info("Found user: {}",user);
         GrantedAuthority authority = new SimpleGrantedAuthority( user.getRole());
         Set<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(authority);

@@ -51,10 +51,10 @@ public class PostController {
     ) {
         log.info("PostController - getAllPosts()");
        try {
-            List<Post> posts;
+            List<PostResponseDTO> posts;
             Pageable paging = PageRequest.of(page, size);
 
-            Page<Post> pagePosts;
+            Page<PostResponseDTO> pagePosts;
             if (keyword == null)
                 pagePosts = postService.findAll(paging);
             else
@@ -111,16 +111,16 @@ public class PostController {
     //`POST /posts/search` - Search for posts based on keywords in the title or content with pagination.
     @PostMapping("/search")
     public ResponseEntity<Map<String, Object>> search(
-            @RequestParam String keyword,
+            @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ){
         log.info("PostController - search()");
         try {
-            List<Post> posts;
+            List<PostResponseDTO> posts;
             Pageable paging = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "content"));
 
-            Page<Post> pagePosts;
+            Page<PostResponseDTO> pagePosts;
             if (keyword == null)
                 pagePosts = postService.findAll(paging);
             else

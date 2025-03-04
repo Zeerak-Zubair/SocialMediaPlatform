@@ -16,4 +16,5 @@ public class PostResponseDTO {
     private LocalDateTime createdAt;
     private List<CommentResponseDTO> comments;
     private int likes;
+    private String username;
 }

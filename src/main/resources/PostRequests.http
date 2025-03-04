@@ -13,7 +13,7 @@ Authorization: Bearer <your-jwt-token>
 
 ### Get all Posts
 GET http://localhost:8080/posts
-Authorization: Bearer <your-jwt-token>
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJaZWVyYWsiLCJpYXQiOjE3NDEwODgzMzksImV4cCI6MTc0MTA4OTMzOX0.zi5fJk5q79QVpsMTq25j9TMCxgJyeJygnEOiVWi3so48KY-yWRMH5Yy1f49xt2Pi
 
 ### Update a Post
 PUT http://localhost:8080/posts/1

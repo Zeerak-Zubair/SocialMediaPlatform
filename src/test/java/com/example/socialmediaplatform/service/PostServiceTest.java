@@ -376,14 +376,14 @@ class PostServiceTest {
         int page = 0;
         int size = 10;
         Pageable paging = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "content"));
-        Page<Post> posts = postService.search("post",paging);
+        Page<PostResponseDTO> posts = postService.search("post",paging);
 
         Assertions.assertNotNull(posts); // Ensure the page object is not null
         Assertions.assertFalse(posts.isEmpty()); // Ensure that the result contains posts
         Assertions.assertEquals(2, posts.getTotalElements()); // Ensure the total elements match expected value
         Assertions.assertEquals(1, posts.getTotalPages()); // Ensure total pages match expected pages
 
-        List<Post> postList = posts.getContent();
+        List<PostResponseDTO> postList = posts.getContent();
         Assertions.assertEquals(2, postList.size()); // Ensure the page contains the expected number of posts
         Assertions.assertEquals("My first post!", postList.get(0).getContent()); // Verify content of the first post
         Assertions.assertEquals("My second post!", postList.get(1).getContent()); // Verify content of the second post
