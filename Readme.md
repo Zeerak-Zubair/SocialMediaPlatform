@@ -116,3 +116,9 @@ Swagger UI is enabled for API documentation. Once the application is running, yo
 - **Swagger UI:** [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 - **API Docs:** [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
+### Links
+
+- **JPA/Hibernate** [https://www.baeldung.com/jpa-hibernate-associations](https://www.baeldung.com/jpa-hibernate-associations)
+- **JWT Authentication (1)** [https://www.youtube.com/watch?v=HYBRBkYtpeo&t=2219s&ab_channel=GenuineCoder](https://www.youtube.com/watch?v=HYBRBkYtpeo&t=2219s&ab_channel=GenuineCoder)
+- **JWT Authentication (2)** [https://www.javaguides.net/2024/01/spring-boot-security-jwt-tutorial.html](https://www.javaguides.net/2024/01/spring-boot-security-jwt-tutorial.html)
+- **RestAPI Integration Testing** [https://www.javaguides.net/2022/03/spring-boot-integration-testing-mysql-crud-rest-api-tutorial.html](https://www.javaguides.net/2022/03/spring-boot-integration-testing-mysql-crud-rest-api-tutorial.html)
